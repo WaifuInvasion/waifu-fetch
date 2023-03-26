@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Waifu Photos</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Waifu Photos</h1>
+      <img src="" alt="waifu photo" id="waifu-photo" />
+      <button id="fetch-button">Fetch Waifu Photo</button>
+    </div>
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #f2f2f2;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+img {
+  width: 80%;
+  max-width: 500px;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  background-color: #00bcd4;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0097a7;
+}
+
+</style>
+
+<script>
+const fetchButton = document.getElementById('fetch-button');
+const waifuPhoto = document.getElementById('waifu-photo');
+
+fetchButton.addEventListener('click', fetchWaifuPhoto);
+
+function fetchWaifuPhoto() {
+  fetch('https://api.waifu.pics/sfw/waifu')
+    .then(response => response.json())
+    .then(data => {
+      waifuPhoto.src = data.url;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+</script>
+  </body>
+</html>
